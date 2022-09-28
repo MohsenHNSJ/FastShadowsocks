@@ -38,7 +38,7 @@ echo "    \"server_port\":$randomport," >> $file
 echo "    \"password\":\"$randompassword\"," >> $file
 echo "    \"timeout\":600," >> $file
 echo "    \"method\":\"chacha20-ietf-poly1305\"," >> $file
-echo "    \"nameserver\":\"1.1.1.1\"" >> $file
+echo "    \"nameserver\":\"8.8.8.8\"" >> $file
 echo "}" >> $file
 sleep 1
 
