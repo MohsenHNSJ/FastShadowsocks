@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "نسخه 0.0.3"
+echo "نسخه 0.0.4"
 
 echo "شروع بروزرسانی سیستم"
 sleep 1
@@ -116,6 +116,8 @@ sleep 1
 
 sudo systemctl restart shadowsocks-libev-server@config
 sleep 1
+
+$  sudo apt-mark unhold openssh-server
 
 serverip=$(hostname -I | awk '{ print $1}')
 
