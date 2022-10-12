@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "نسخه 0.0.2"
+echo "نسخه 0.0.3"
 
 echo "شروع بروزرسانی سیستم"
 sleep 1
@@ -38,7 +38,7 @@ randompassword="$({ choose '!@#$%^\&'
   choose '0123456789'
   choose 'abcdefghijklmnopqrstuvwxyz'
   choose 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-  for i in $( seq 1 $(( 4 + RANDOM % 8 )) )
+  for i in $( seq 1 $(( 4 + RANDOM % 12 )) )
      do
         choose '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
      done
@@ -71,9 +71,6 @@ ExecStart=/usr/bin/snap run shadowsocks-libev.ss-server -c /var/snap/shadowsocks
 
 [Install]
 WantedBy=multi-user.target" > /etc/systemd/system/shadowsocks-libev-server@.service
-sleep 1
-
-cat /etc/systemd/system/shadowsocks-libev-server@.service
 sleep 1
 
 sudo systemctl enable --now shadowsocks-libev-server@config
