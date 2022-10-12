@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "نسخه 0.1.0"
+echo "نسخه 0.1.1"
 
 echo "شروع بروزرسانی سیستم"
 sudo apt-mark hold openssh-server
@@ -20,7 +20,7 @@ echo "ساخت فایل تنظیمات شادوساکس"
 sudo touch /var/snap/shadowsocks-libev/common/etc/shadowsocks-libev/config.json
 
 file="/var/snap/shadowsocks-libev/common/etc/shadowsocks-libev/config.json"
-randomport=$(( $RANDOM % 65000 + 100 ))
+randomport=$(( $RANDOM % 65434 + 100 ))
 
 choose() { echo ${1:RANDOM%${#1}:1} $RANDOM; }
 randompassword="$({ choose '!@#$%^\&'
