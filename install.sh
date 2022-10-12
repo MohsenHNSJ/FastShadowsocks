@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "نسخه 0.0.7"
+echo "نسخه 0.0.8"
 
 echo "شروع بروزرسانی سیستم"
 sudo apt-mark hold openssh-server
