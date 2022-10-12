@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "نسخه 0.0.9.2"
+echo "نسخه 0.1.0"
 
 echo "شروع بروزرسانی سیستم"
 sudo apt-mark hold openssh-server
@@ -40,7 +40,7 @@ echo "    \"server_port\":$randomport," >> $file
 echo "    \"password\":\"$randompassword\"," >> $file
 echo "    \"timeout\":600," >> $file
 echo "    \"method\":\"chacha20-ietf-poly1305\"," >> $file
-echo "    \"nameserver\":\"8.8.8.8\"" >> $file
+echo "    \"nameserver\":\"1.1.1.1\"" >> $file
 echo "}" >> $file
 
 echo "تنظیم سرویس شادوساکس"
