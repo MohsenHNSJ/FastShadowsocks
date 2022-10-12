@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "نسخه 0.0.1"
+echo "نسخه 0.0.2"
 
 echo "شروع بروزرسانی سیستم"
 sleep 1
@@ -32,7 +32,17 @@ sleep 1
 
 file="/var/snap/shadowsocks-libev/common/etc/shadowsocks-libev/config.json"
 randomport=$(( $RANDOM % 65000 + 100 ))
-randompassword=$(( openssl rand -base64 32 | tr -d /=+ | cut -c -16 ))
+
+choose() { echo ${1:RANDOM%${#1}:1} $RANDOM; }
+randompassword="$({ choose '!@#$%^\&'
+  choose '0123456789'
+  choose 'abcdefghijklmnopqrstuvwxyz'
+  choose 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+  for i in $( seq 1 $(( 4 + RANDOM % 8 )) )
+     do
+        choose '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
+     done
+ } | sort -R | awk '{printf "%s",$1}')"
 
 echo "{" > $file
 echo "    \"server\":[\"[::0]\", \"0.0.0.0\"]," >> $file
