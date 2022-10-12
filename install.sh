@@ -1,13 +1,13 @@
 #!/bin/bash
 
-echo "نسخه 0.1.1"
+echo "نسخه 0.1.2"
 
-echo "شروع بروزرسانی سیستم"
+echo "بروزرسانی سیستم"
 sudo apt-mark hold openssh-server
 sudo apt -qq update && apt -qq -y -o=Dpkg::Use-Pty=0 upgrade
 echo "بروزرسانی انجام شد"
 
-echo "شروع نصب نرم افزار های مورد نیاز"
+echo "نصب نرم افزار های مورد نیاز"
 sudo apt -qq -y install -o=Dpkg::Use-Pty=0 snapd haveged openssl
 echo "نرم افزار های مورد نیاز با موفقیت نصب شدند"
 
@@ -16,7 +16,7 @@ snap install shadowsocks-libev
 
 sudo mkdir -p /var/snap/shadowsocks-libev/common/etc/shadowsocks-libev
 
-echo "ساخت فایل تنظیمات شادوساکس"
+echo "تنظیم شادوساکس"
 sudo touch /var/snap/shadowsocks-libev/common/etc/shadowsocks-libev/config.json
 
 file="/var/snap/shadowsocks-libev/common/etc/shadowsocks-libev/config.json"
@@ -42,7 +42,6 @@ echo "    \"method\":\"chacha20-ietf-poly1305\"," >> $file
 echo "    \"nameserver\":\"1.1.1.1\"" >> $file
 echo "}" >> $file
 
-echo "تنظیم سرویس شادوساکس"
 sudo touch /etc/systemd/system/shadowsocks-libev-server@.service
 
 echo "[Unit]
