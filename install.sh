@@ -1,8 +1,10 @@
 #!/bin/bash
 
-echo "نسخه 0.1.2"
+echo "نسخه 0.1.3"
 
 echo "بروزرسانی سیستم"
+echo "این مرحله ممکن است تا 15 دقیقه طول بکشد"
+echo "لطفاً صبر کنید"
 sudo apt-mark hold openssh-server
 sudo apt -qq update && apt -qq -y -o=Dpkg::Use-Pty=0 upgrade
 echo "بروزرسانی انجام شد"
