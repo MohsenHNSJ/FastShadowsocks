@@ -1,34 +1,23 @@
 #!/bin/bash
 
-echo "نسخه 0.0.4"
+echo "نسخه 0.0.5"
 
 echo "شروع بروزرسانی سیستم"
-sleep 1
 sudo apt-mark hold openssh-server
 sudo apt update && apt upgrade -y
 echo "بروزرسانی انجام شد"
-sleep 1
 
 echo "شروع نصب نرم افزار های مورد نیاز"
-sleep 1
 sudo apt install snapd haveged openssl -y
 echo "نرم افزار های مورد نیاز با موفقیت نصب شدند"
-sleep 1
-
-echo "سی ثانیه صبر کنید تا سرویس ها راه اندازی و آماده به کار شوند"
-sleep 30
 
 echo "ادامه راه اندازی شادو ساکس"
-sleep 1
 snap install shadowsocks-libev
-sleep 1
 
 sudo mkdir -p /var/snap/shadowsocks-libev/common/etc/shadowsocks-libev
-sleep 1
 
 echo "ساخت فایل تنظیمات شادوساکس"
 sudo touch /var/snap/shadowsocks-libev/common/etc/shadowsocks-libev/config.json
-sleep 1
 
 file="/var/snap/shadowsocks-libev/common/etc/shadowsocks-libev/config.json"
 randomport=$(( $RANDOM % 65000 + 100 ))
@@ -53,11 +42,9 @@ echo "    \"timeout\":600," >> $file
 echo "    \"method\":\"chacha20-ietf-poly1305\"," >> $file
 echo "    \"nameserver\":\"8.8.8.8\"" >> $file
 echo "}" >> $file
-sleep 1
 
 echo "تنظیم سرویس شادوساکس"
 sudo touch /etc/systemd/system/shadowsocks-libev-server@.service
-sleep 1
 
 echo "[Unit]
 Description=Shadowsocks-Libev Custom Server Service for %I
@@ -71,13 +58,10 @@ ExecStart=/usr/bin/snap run shadowsocks-libev.ss-server -c /var/snap/shadowsocks
 
 [Install]
 WantedBy=multi-user.target" > /etc/systemd/system/shadowsocks-libev-server@.service
-sleep 1
 
 sudo systemctl enable --now shadowsocks-libev-server@config
-sleep 1
 
 sudo systemctl start shadowsocks-libev-server@config
-sleep 1
 
 echo "بهینه سازی سرور"
 file2="/etc/security/limits.conf"
@@ -85,7 +69,6 @@ echo "*soft nofile 51200" >> $file2
 echo "*hard nofile 51200" >> $file2
 echo "root soft nofile 51200" >> $file2
 echo "root hard nofile 51200" >> $file2
-sleep 1
 
 echo "fs.file-max = 51200
 net.core.netdev_max_backlog = 250000
@@ -109,13 +92,10 @@ net.ipv4.tcp_wmem = 4096 65536 67108864
 
 net.core.default_qdisc=fq
 net.ipv4.tcp_congestion_control=bbr" >> /etc/sysctl.conf
-sleep 1
 
 sudo sysctl -p
-sleep 1
 
 sudo systemctl restart shadowsocks-libev-server@config
-sleep 1
 
 $  sudo apt-mark unhold openssh-server
 
