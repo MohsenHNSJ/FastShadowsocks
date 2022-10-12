@@ -1,14 +1,14 @@
 #!/bin/bash
 
-echo "نسخه 0.0.5"
+echo "نسخه 0.0.6"
 
 echo "شروع بروزرسانی سیستم"
 sudo apt-mark hold openssh-server
-sudo apt update && apt upgrade -y
+sudo apt update && apt upgrade -qq
 echo "بروزرسانی انجام شد"
 
 echo "شروع نصب نرم افزار های مورد نیاز"
-sudo apt install snapd haveged openssl -y
+sudo apt install snapd haveged openssl -qq
 echo "نرم افزار های مورد نیاز با موفقیت نصب شدند"
 
 echo "ادامه راه اندازی شادو ساکس"
@@ -97,17 +97,17 @@ sudo sysctl -p
 
 sudo systemctl restart shadowsocks-libev-server@config
 
-$  sudo apt-mark unhold openssh-server
+sudo apt-mark unhold openssh-server
 
 serverip=$(hostname -I | awk '{ print $1}')
 
 echo "
-***********************************************
-|    SERVER IP   > $serverip                  |
-|    PORT        > $randomport                |
-|    PASSWORD    > $randompassword            |
-|    ENCRYPTION  > CHACHA20-IETF-POLY1305     |
-***********************************************
+*************************************************
+|    SERVER IP   > $serverip                    |
+|    PORT        > $randomport                  |
+|    PASSWORD    > $randompassword              |
+|    ENCRYPTION  > CHACHA20-IETF-POLY1305       |
+*************************************************
 "
 
 echo "سرور با موفقیت راه اندازی شد"
