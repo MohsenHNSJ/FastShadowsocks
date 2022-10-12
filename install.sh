@@ -1,14 +1,14 @@
 #!/bin/bash
 
-echo "نسخه 0.0.6"
+echo "نسخه 0.0.7"
 
 echo "شروع بروزرسانی سیستم"
 sudo apt-mark hold openssh-server
-sudo apt update && apt upgrade -qq
+sudo apt update -qq && apt upgrade -qq
 echo "بروزرسانی انجام شد"
 
 echo "شروع نصب نرم افزار های مورد نیاز"
-sudo apt install snapd haveged openssl -qq
+sudo apt install -qq snapd haveged openssl
 echo "نرم افزار های مورد نیاز با موفقیت نصب شدند"
 
 echo "ادامه راه اندازی شادو ساکس"
