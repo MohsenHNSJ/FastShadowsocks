@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "نسخه 0.1.3"
+echo "نسخه 0.1.3.1"
 
 echo "بروزرسانی سیستم"
 echo "این مرحله ممکن است تا 15 دقیقه طول بکشد"
@@ -13,7 +13,7 @@ echo "نصب نرم افزار های مورد نیاز"
 sudo apt -qq -y install -o=Dpkg::Use-Pty=0 snapd haveged openssl
 echo "نرم افزار های مورد نیاز با موفقیت نصب شدند"
 
-echo "ادامه راه اندازی شادو ساکس"
+echo "ادامه راه اندازی شادوساکس"
 snap install shadowsocks-libev
 
 sudo mkdir -p /var/snap/shadowsocks-libev/common/etc/shadowsocks-libev
