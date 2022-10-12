@@ -1,14 +1,17 @@
 #!/bin/bash
 
+echo "نسخه 0.0.1"
+
 echo "شروع بروزرسانی سیستم"
 sleep 1
-sudo apt update && apt upgrade -y -y
+sudo apt-mark hold openssh-server
+sudo apt update && apt upgrade -y
 echo "بروزرسانی انجام شد"
 sleep 1
 
 echo "شروع نصب نرم افزار های مورد نیاز"
 sleep 1
-sudo apt install snapd haveged openssl -y 
+sudo apt install snapd haveged openssl -y
 echo "نرم افزار های مورد نیاز با موفقیت نصب شدند"
 sleep 1
 
@@ -51,11 +54,11 @@ Description=Shadowsocks-Libev Custom Server Service for %I
 Documentation=man:ss-server(1)
 After=network-online.target
 Wants=network-online.target
-    
+
 [Service]
 Type=simple
 ExecStart=/usr/bin/snap run shadowsocks-libev.ss-server -c /var/snap/shadowsocks-libev/common/etc/shadowsocks-libev/%i.json
-    
+
 [Install]
 WantedBy=multi-user.target" > /etc/systemd/system/shadowsocks-libev-server@.service
 sleep 1
@@ -63,7 +66,7 @@ sleep 1
 cat /etc/systemd/system/shadowsocks-libev-server@.service
 sleep 1
 
-sudo systemctl enable --now shadowsocks-libev-server@config 
+sudo systemctl enable --now shadowsocks-libev-server@config
 sleep 1
 
 sudo systemctl start shadowsocks-libev-server@config

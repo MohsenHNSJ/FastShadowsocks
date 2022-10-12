@@ -2,4 +2,8 @@
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
 
-/.vs/FastShadowsocks/FileContentIndex/a46fc9b8-d203-486f-ac69-a0300de9a9ab.vsidx
+/.vs/FastShadowsocks/FileContentIndex
+/.vs/FastShadowsocks/v17
+*.suo
+*.sqlite
+*.json
