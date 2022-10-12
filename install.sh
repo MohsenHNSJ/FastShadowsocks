@@ -2,7 +2,7 @@
 
 echo "شروع بروزرسانی سیستم"
 sleep 1
-sudo apt update && apt upgrade -y
+sudo apt update && apt upgrade -y -y
 echo "بروزرسانی انجام شد"
 sleep 1
 
