@@ -1,20 +1,5 @@
 #!/bin/bash
-
-### Initialize Random Variables ###
-port=$(( $RANDOM % 65434 + 100 ))
-
-### Input Processing ###
-while getopts ":a:" option; do
-  case $option in
-      a) # Set Port
-      port=$OPTARG;;
-      \?) # Invalid Option
-      echo "Error: Invalid Option!"
-      exit;;
-  esac
-done
-
-echo "نسخه 0.1.4"
+echo "نسخه 0.1.4.1"
 
 echo "بروزرسانی سیستم"
 echo "این مرحله ممکن است تا 15 دقیقه طول بکشد"
@@ -36,6 +21,7 @@ echo "تنظیم شادوساکس"
 sudo touch /var/snap/shadowsocks-libev/common/etc/shadowsocks-libev/config.json
 
 file="/var/snap/shadowsocks-libev/common/etc/shadowsocks-libev/config.json"
+serverport=$(( $RANDOM % 65434 + 100 ))
 
 choose() { echo ${1:RANDOM%${#1}:1} $RANDOM; }
 randompassword="$({ choose '!@#$%^\&'
@@ -50,7 +36,7 @@ randompassword="$({ choose '!@#$%^\&'
 echo "{" > $file
 echo "    \"server\":[\"[::0]\", \"0.0.0.0\"]," >> $file
 echo "    \"mode\":\"tcp_and_udp\"," >> $file
-echo "    \"server_port\":$port," >> $file
+echo "    \"server_port\":$serverport," >> $file
 echo "    \"password\":\"$randompassword\"," >> $file
 echo "    \"timeout\":600," >> $file
 echo "    \"method\":\"chacha20-ietf-poly1305\"," >> $file
