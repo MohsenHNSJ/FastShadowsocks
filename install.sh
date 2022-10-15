@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "نسخه 0.1.4.2"
+echo "نسخه 0.1.4.3"
 
 echo "بروزرسانی سیستم"
 echo "این مرحله ممکن است تا 15 دقیقه طول بکشد"
@@ -22,7 +22,7 @@ echo "تنظیم شادوساکس"
 sudo touch /var/snap/shadowsocks-libev/common/etc/shadowsocks-libev/config.json
 
 file="/var/snap/shadowsocks-libev/common/etc/shadowsocks-libev/config.json"
-randomport=$(( $RANDOM % 65434 + 100 ))
+port=$(( $RANDOM % 65434 + 100 ))
 
 choose() { echo ${1:RANDOM%${#1}:1} $RANDOM; }
 randompassword="$({ choose '!@#$%^\&'
@@ -37,7 +37,7 @@ randompassword="$({ choose '!@#$%^\&'
 echo "{" > $file
 echo "    \"server\":[\"[::0]\", \"0.0.0.0\"]," >> $file
 echo "    \"mode\":\"tcp_and_udp\"," >> $file
-echo "    \"server_port\":$randomport," >> $file
+echo "    \"server_port\":$port," >> $file
 echo "    \"password\":\"$randompassword\"," >> $file
 echo "    \"timeout\":600," >> $file
 echo "    \"method\":\"chacha20-ietf-poly1305\"," >> $file
@@ -104,7 +104,7 @@ serverip=$(hostname -I | awk '{ print $1}')
 echo "
 *************************************************
 |    SERVER IP   > $serverip                    |
-|    PORT        > $randomport                  |
+|    PORT        > $port                        |
 |    PASSWORD    > $randompassword              |
 |    ENCRYPTION  > CHACHA20-IETF-POLY1305       |
 *************************************************
