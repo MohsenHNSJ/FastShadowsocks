@@ -107,6 +107,6 @@ echo "
 
 echo "Server configured Successfully"
 echo "Copy above information in your system"
-echo "Then execute reboot commnad as below"
+echo "Then execute reboot command as below"
 echo "reboot"
 echo "And connect to the server with your client software"
