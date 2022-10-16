@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "نسخه 0.1.4.3"
+echo "نسخه 0.1.5"
 
 echo "بروزرسانی سیستم"
 echo "این مرحله ممکن است تا 15 دقیقه طول بکشد"
@@ -15,7 +15,6 @@ echo "نرم افزار های مورد نیاز با موفقیت نصب شدن
 
 echo "ادامه راه اندازی شادوساکس"
 snap install shadowsocks-libev
-
 sudo mkdir -p /var/snap/shadowsocks-libev/common/etc/shadowsocks-libev
 
 echo "تنظیم شادوساکس"
@@ -60,7 +59,6 @@ ExecStart=/usr/bin/snap run shadowsocks-libev.ss-server -c /var/snap/shadowsocks
 WantedBy=multi-user.target" > /etc/systemd/system/shadowsocks-libev-server@.service
 
 sudo systemctl enable --now shadowsocks-libev-server@config
-
 sudo systemctl start shadowsocks-libev-server@config
 
 echo "بهینه سازی سرور"
@@ -94,11 +92,8 @@ net.core.default_qdisc=fq
 net.ipv4.tcp_congestion_control=bbr" >> /etc/sysctl.conf
 
 sudo sysctl -p
-
 sudo systemctl restart shadowsocks-libev-server@config
-
 sudo apt-mark unhold openssh-server
-
 serverip=$(hostname -I | awk '{ print $1}')
 
 echo "
@@ -114,5 +109,4 @@ echo "سرور با موفقیت راه اندازی شد"
 echo "اطلاعات بالا را در سیستم خود کپی کنید"
 echo "سپس دستور ریبوت را مانند زیر وارد کنید"
 echo "reboot"
-echo "و پس از گذشت یک الی دو دقیقه"
 echo "با نرم افزار شادوساکس به سرور متصل شوید"
