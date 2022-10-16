@@ -15,6 +15,6 @@ This is a script for starting a Shadowsocks server with random Port and Password
 
 To use, execute below command in a VPS running Ubuntu 20.04:
 
-sudo curl -s https://raw.githubusercontent.com/MohsenHNSJ/FastShadowsocks/master/install.sh | bash
+sudo curl -s https://raw.githubusercontent.com/MohsenHNSJ/FastShadowsocks/master/install-EN.sh | bash
 
 After the script has finished it's job, write down server credentials and enter "reboot" command and try connecting to it via a client application.
